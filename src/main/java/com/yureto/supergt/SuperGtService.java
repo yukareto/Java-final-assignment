@@ -15,6 +15,14 @@ public class SuperGtService {
         this.superGtMapper = superGtMapper;
     }
 
+    public List<SuperGt> findAll() {
+        return superGtMapper.findAll();
+    }
+
+    public SuperGt findById(int id) {
+        return superGtMapper.findById(id);
+    }
+
     public List<SuperGt> findByDriver(String driver) {
         return superGtMapper.findByDriver(driver);
     }

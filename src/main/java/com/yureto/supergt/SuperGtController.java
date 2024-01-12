@@ -10,25 +10,25 @@ import java.util.List;
 
 @RestController
 public class SuperGtController {
-    private final SuperGtMapper superGtMapper;
+    private final SuperGtService superGtService;
 
     @Autowired
-    public SuperGtController(SuperGtMapper superGtMapper) {
-        this.superGtMapper = superGtMapper;
+    public SuperGtController(SuperGtService superGtService) {
+        this.superGtService = superGtService;
     }
 
     @GetMapping("/superGt")
     public List<SuperGt> findAll() {
-        return superGtMapper.findAll();
+        return superGtService.findAll();
     }
 
     @GetMapping("/superGt/{id}")
     public SuperGt findById(@PathVariable("id") int id) {
-        return superGtMapper.findById(id);
+        return superGtService.findById(id);
     }
 
     @GetMapping("/superGt/name")
     public List<SuperGt> findByDriver(@RequestParam("driver") String driver) {
-        return superGtMapper.findByDriver(driver);
+        return superGtService.findByDriver(driver);
     }
 }
