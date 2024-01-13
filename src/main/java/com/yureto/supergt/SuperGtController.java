@@ -1,7 +1,5 @@
 package com.yureto.supergt;
 
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotBlank;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -28,7 +26,7 @@ public class SuperGtController {
     }
 
     @GetMapping("/superGt/name")
-    public List<SuperGt> findByDriver(@RequestParam("driver") @Valid @NotBlank String driver) {
+    public List<SuperGt> findByDriver(@RequestParam("driver")  String driver) {
         return superGtService.findByDriver(driver);
     }
 }
