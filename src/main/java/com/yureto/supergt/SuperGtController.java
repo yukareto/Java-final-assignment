@@ -1,6 +1,5 @@
 package com.yureto.supergt;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,23 +11,21 @@ import java.util.List;
 public class SuperGtController {
     private final SuperGtService superGtService;
 
-    @Autowired
     public SuperGtController(SuperGtService superGtService) {
         this.superGtService = superGtService;
     }
 
     @GetMapping("/superGt")
-    public List<SuperGt> findAll() {
-        return superGtService.findAll();
+    public List<SuperGt> findAll(@RequestParam(required = false) String driver) {
+        if (driver != null) {
+            return superGtService.findByDriver(driver);
+        } else {
+            return superGtService.findAll();
+        }
     }
 
     @GetMapping("/superGt/{id}")
     public SuperGt findById(@PathVariable("id") int id) {
         return superGtService.findById(id);
-    }
-
-    @GetMapping("/superGt/name")
-    public List<SuperGt> findByDriver(@RequestParam("driver") String driver) {
-        return superGtService.findByDriver(driver);
     }
 }
