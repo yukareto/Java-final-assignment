@@ -29,3 +29,5 @@ public class SuperGtController {
         return superGtService.findById(id);
     }
 }
+
+feature/readexceptionhandling
