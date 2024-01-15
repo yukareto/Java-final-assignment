@@ -19,11 +19,15 @@ public class SuperGtService {
         return superGtMapper.findAll();
     }
 
-    public SuperGt findById(int id) {
-        return superGtMapper.findById(id);
-    }
-
     public List<SuperGt> findByDriver(String driver) {
         return superGtMapper.findByDriver(driver);
+    }
+
+    public SuperGt findById(int id) {
+        SuperGt superGt = superGtMapper.findById(id);
+        if (superGt == null) {
+            throw new SuperGtNotFoundException("SuperGt with id " + id + " not found");
+        }
+        return superGt;
     }
 }
