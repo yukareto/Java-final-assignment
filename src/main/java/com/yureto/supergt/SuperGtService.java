@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SuperGtService {
@@ -24,10 +25,8 @@ public class SuperGtService {
     }
 
     public SuperGt findById(int id) {
-        SuperGt superGt = superGtMapper.findById(id);
-        if (superGt == null) {
-            throw new SuperGtNotFoundException("SuperGt with id " + id + " not found");
-        }
-        return superGt;
+        Optional<SuperGt> superGtOptional = superGtMapper.findById(id);
+        return superGtOptional.orElseThrow(() -> new SuperGtNotFoundException("SuperGt with id " + id + " not found"));
     }
+
 }
