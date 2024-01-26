@@ -1,7 +1,7 @@
 package com.yureto.supergt;
 
 public class SuperGt {
-    public int id;
+    public Integer id;
 
     public String driver;
 
@@ -9,7 +9,7 @@ public class SuperGt {
 
     public String car_number;
 
-    public SuperGt(int id, String driver, String affiliated_team, String car_number) {
+    public SuperGt(String driver, String affiliated_team, String car_number) {
         this.id = id;
         this.driver = driver;
         this.affiliated_team = affiliated_team;
