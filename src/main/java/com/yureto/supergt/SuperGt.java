@@ -2,18 +2,15 @@ package com.yureto.supergt;
 
 public class SuperGt {
     public Integer id;
-
     public String driver;
+    public String affiliatedTeam;
+    public String carNumber;
 
-    public String affiliated_team;
-
-    public String car_number;
-
-    public SuperGt(String driver, String affiliated_team, String car_number) {
+    public SuperGt(String driver, String affiliatedTeam, String carNumber) {
         this.id = id;
         this.driver = driver;
-        this.affiliated_team = affiliated_team;
-        this.car_number = car_number;
+        this.affiliatedTeam = affiliatedTeam;
+        this.carNumber = carNumber;
     }
 
     public int getId() {
@@ -32,19 +29,19 @@ public class SuperGt {
         this.driver = driver;
     }
 
-    public String getAffiliated_team() {
-        return affiliated_team;
+    public String getAffiliatedTeam() {
+        return affiliatedTeam;
     }
 
-    public void setAffiliated_team(String affiliated_team) {
-        this.affiliated_team = affiliated_team;
+    public void setAffiliatedTeam(String affiliatedTeam) {
+        this.affiliatedTeam = affiliatedTeam;
     }
 
-    public String getCar_number() {
-        return car_number;
+    public String getCarNumber() {
+        return carNumber;
     }
 
-    public void setCar_number(String car_number) {
-        this.car_number = car_number;
+    public void setCarNumber(String carNumber) {
+        this.carNumber = carNumber;
     }
 }

@@ -23,7 +23,6 @@ public class SuperGtController {
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
-
     @GetMapping("/superGt/{id}")
     public ResponseEntity<SuperGt> findById(@PathVariable("id") Integer id) {
         SuperGt superGt = superGtService.findById(id);
