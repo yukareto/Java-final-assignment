@@ -12,3 +12,4 @@ INSERT INTO superGt (driver, affiliated_team, car_number) VALUES ('立川裕路'
 INSERT INTO superGt (driver, affiliated_team, car_number) VALUES ('蒲生尚弥', 'LEON PYRAMID AMG', 65);
 INSERT INTO superGt (driver, affiliated_team, car_number) VALUES ('井口卓人', 'SUBARU BRZ R&D SPORT', 61);
 INSERT INTO superGt (driver, affiliated_team, car_number) VALUES ('荒聖治', 'Studie BMW M4', 7);
+INSERT INTO superGt (driver, affiliated_team, car_number) VALUES ('谷口信輝', 'GOODSMILE RACING & TeamUKYO', 4);

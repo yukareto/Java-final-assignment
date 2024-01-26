@@ -29,4 +29,9 @@ public class SuperGtService {
         return superGtOptional.orElseThrow(() -> new SuperGtNotFoundException("SuperGt with id " + id + " not found"));
     }
 
+     public SuperGt insert(String driver, String affiliated_team, String car_number) {
+        SuperGt superGt = new SuperGt(driver, affiliated_team, car_number);
+        superGtMapper.insert(superGt);
+        return superGt;
+    }
 }
