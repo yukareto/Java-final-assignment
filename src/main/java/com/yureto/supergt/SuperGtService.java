@@ -29,7 +29,12 @@ public class SuperGtService {
         return superGtOptional.orElseThrow(() -> new SuperGtNotFoundException("SuperGt with id " + id + " not found"));
     }
 
-     public SuperGt insert(String driver, String affiliated_team, String car_number) {
+    public SuperGt insert(String driver, String affiliated_team, String car_number) {
+        Optional<SuperGt> superGtOptional = superGtMapper.findByDriverOrAffiliatedTeamOrCarNumber(driver, affiliated_team, car_number);
+        if (superGtOptional.isPresent()) {
+            throw new SuperGtAlreadyExistsException("driver " + driver + " and affiliated_team " + affiliated_team + " and car_number " + car_number + " already exists");
+
+        }
         SuperGt superGt = new SuperGt(driver, affiliated_team, car_number);
         superGtMapper.insert(superGt);
         return superGt;

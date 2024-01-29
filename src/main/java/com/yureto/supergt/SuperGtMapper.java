@@ -20,6 +20,9 @@ public interface SuperGtMapper {
     @Select("SELECT * FROM superGt WHERE id = #{id}")
     Optional<SuperGt> findById(int id);
 
+    @Select("SELECT * FROM superGt WHERE driver = #{driver} OR affiliated_team = #{affiliated_team} OR car_number = #{car_number}")
+    Optional<SuperGt> findByDriverOrAffiliatedTeamOrCarNumber(String driver, String affiliated_team, String car_number);
+
     @Insert("INSERT INTO superGt (driver, affiliated_team, car_number) VALUES (#{driver}, #{affiliated_team}, #{car_number})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insert(SuperGt superGt);

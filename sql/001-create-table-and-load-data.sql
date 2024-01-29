@@ -3,7 +3,9 @@ CREATE TABLE superGt (
   driver VARCHAR(30) NOT NULL,
   affiliated_team VARCHAR(30) NOT NULL,
   car_number INT NOT NULL,
-  PRIMARY KEY(id)
+  PRIMARY KEY(id),
+  UNIQUE(driver),
+  UNIQUE(car_number)
 );
 
 INSERT INTO superGt (driver, affiliated_team, car_number) VALUES ('千代勝正', 'Niterra MOTUL Z', 3);
