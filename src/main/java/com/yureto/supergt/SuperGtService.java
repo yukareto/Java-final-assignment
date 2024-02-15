@@ -35,7 +35,7 @@ public class SuperGtService {
             throw new SuperGtAlreadyExistsException("driver " + driver + " and affiliated_team " + affiliated_team + " and car_number " + car_number + " already exists");
 
         }
-        SuperGt superGt = new SuperGt(driver, affiliated_team, car_number);
+        SuperGt superGt = new SuperGt(null, driver, affiliated_team, car_number);
         superGtMapper.insert(superGt);
         return superGt;
     }

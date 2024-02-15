@@ -6,18 +6,18 @@ public class SuperGt {
     public String affiliatedTeam;
     public String carNumber;
 
-    public SuperGt(String driver, String affiliatedTeam, String carNumber) {
+    public SuperGt(Integer id, String driver, String affiliatedTeam, String carNumber) {
         this.id = id;
         this.driver = driver;
         this.affiliatedTeam = affiliatedTeam;
         this.carNumber = carNumber;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
