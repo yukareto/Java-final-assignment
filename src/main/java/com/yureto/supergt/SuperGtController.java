@@ -36,7 +36,7 @@ public class SuperGtController {
 
     @PostMapping("/superGt")
     public ResponseEntity<SuperGtResponse> insert(@RequestBody @Validated SuperGtRequest superGtRequest, UriComponentsBuilder uriComponentsBuilder) {
-        SuperGt superGt = superGtService.insert(superGtRequest.getDriver(), superGtRequest.getAffiliated_team(), superGtRequest.getCar_number());
+        SuperGt superGt = superGtService.insert(superGtRequest.getDriver(), superGtRequest.getAffiliatedTeam(), superGtRequest.getCarNumber());
         URI uri = uriComponentsBuilder.path("/superGtList/{id}").buildAndExpand(superGt.getId()).toUri();
         SuperGtResponse message = new SuperGtResponse("new driver created");
         return ResponseEntity.created(uri).body(message);
