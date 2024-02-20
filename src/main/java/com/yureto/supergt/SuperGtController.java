@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -40,5 +41,16 @@ public class SuperGtController {
         URI uri = uriComponentsBuilder.path("/superGtList/{id}").buildAndExpand(superGt.getId()).toUri();
         SuperGtResponse message = new SuperGtResponse("new driver created");
         return ResponseEntity.created(uri).body(message);
+    }
+
+    @PatchMapping("/superGt/{id}")
+    public ResponseEntity<SuperGtResponse> update(@PathVariable("id") Integer id, @RequestBody @Validated SuperGtRequest superGtRequest) {
+        SuperGt superGt = superGtService.findById(id);
+        superGt.setDriver(superGtRequest.getDriver());
+        superGt.setAffiliatedTeam(superGtRequest.getAffiliatedTeam());
+        superGt.setCarNumber(superGtRequest.getCarNumber());
+        superGtService.update(id, superGtRequest);
+        SuperGtResponse message = new SuperGtResponse("driver updated");
+        return new ResponseEntity<>(message, HttpStatus.OK);
     }
 }

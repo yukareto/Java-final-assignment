@@ -39,4 +39,23 @@ public class SuperGtService {
         superGtMapper.insert(superGt);
         return superGt;
     }
+
+    public SuperGt update(Integer id, SuperGtRequest superGtRequest) {
+        Optional<SuperGt> optionalSuperGt = superGtMapper.findById(id);
+
+        SuperGt existingSuperGt = optionalSuperGt.orElseThrow(() -> new SuperGtNotFoundException("SuperGt with id " + id + " not found"));
+
+        if (superGtRequest.getDriver() == null || superGtRequest.getDriver().isEmpty() ||
+                superGtRequest.getAffiliatedTeam() == null || superGtRequest.getAffiliatedTeam().isEmpty() ||
+                superGtRequest.getCarNumber() == null || superGtRequest.getCarNumber().isEmpty()) {
+            throw new IllegalArgumentException("Driver, Affiliated Team, and Car Number must be provided for update");
+        }
+
+        existingSuperGt.setDriver(superGtRequest.getDriver());
+        existingSuperGt.setAffiliatedTeam(superGtRequest.getAffiliatedTeam());
+        existingSuperGt.setCarNumber(superGtRequest.getCarNumber());
+        superGtMapper.update(existingSuperGt);
+
+        return existingSuperGt;
+    }
 }
