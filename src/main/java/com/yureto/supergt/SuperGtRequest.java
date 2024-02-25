@@ -1,10 +1,21 @@
 package com.yureto.supergt;
 
+import jakarta.validation.constraints.NotNull;
+
 public class SuperGtRequest {
 
+    @NotNull(message = "Driver must not be null")
     private String driver;
+
+    @NotNull(message = "Affiliated Team must not be null")
     private String affiliatedTeam;
+
+    @NotNull(message = "Car Number must not be null")
     private String carNumber;
+
+    // デフォルトコンストラクタの追加
+    public SuperGtRequest() {
+    }
 
     public SuperGtRequest(String driver, String affiliatedTeam, String carNumber) {
         this.driver = driver;
