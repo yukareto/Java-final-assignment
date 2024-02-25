@@ -1,10 +1,15 @@
 package com.yureto.supergt;
 
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.Validation;
+import jakarta.validation.Validator;
+import jakarta.validation.ValidatorFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class SuperGtService {
@@ -41,19 +46,22 @@ public class SuperGtService {
     }
 
     public SuperGt update(Integer id, SuperGtRequest superGtRequest) {
-        Optional<SuperGt> optionalSuperGt = superGtMapper.findById(id);
 
-        SuperGt existingSuperGt = optionalSuperGt.orElseThrow(() -> new SuperGtNotFoundException("SuperGt with id " + id + " not found"));
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        Validator validator = factory.getValidator();
 
-        if (superGtRequest.getDriver() == null || superGtRequest.getDriver().isEmpty() ||
-                superGtRequest.getAffiliatedTeam() == null || superGtRequest.getAffiliatedTeam().isEmpty() ||
-                superGtRequest.getCarNumber() == null || superGtRequest.getCarNumber().isEmpty()) {
-            throw new IllegalArgumentException("Driver, Affiliated Team, and Car Number must be provided for update");
+        Set<ConstraintViolation<SuperGtRequest>> violations = validator.validate(superGtRequest);
+        if (!violations.isEmpty()) {
+            throw new IllegalArgumentException("Validation error: " + violations.iterator().next().getMessage());
         }
+
+        Optional<SuperGt> optionalSuperGt = superGtMapper.findById(id);
+        SuperGt existingSuperGt = optionalSuperGt.orElseThrow(() -> new SuperGtNotFoundException("SuperGt with id " + id + " not found"));
 
         existingSuperGt.setDriver(superGtRequest.getDriver());
         existingSuperGt.setAffiliatedTeam(superGtRequest.getAffiliatedTeam());
         existingSuperGt.setCarNumber(superGtRequest.getCarNumber());
+
         superGtMapper.update(existingSuperGt);
 
         return existingSuperGt;
