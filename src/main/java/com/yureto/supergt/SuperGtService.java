@@ -1,17 +1,15 @@
 package com.yureto.supergt;
 
-import jakarta.validation.ConstraintViolation;
-import jakarta.validation.Validation;
-import jakarta.validation.Validator;
-import jakarta.validation.ValidatorFactory;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
+@Validated
 public class SuperGtService {
 
     private final SuperGtMapper superGtMapper;
@@ -45,15 +43,7 @@ public class SuperGtService {
         return superGt;
     }
 
-    public SuperGt update(Integer id, SuperGtRequest superGtRequest) {
-
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        Validator validator = factory.getValidator();
-
-        Set<ConstraintViolation<SuperGtRequest>> violations = validator.validate(superGtRequest);
-        if (!violations.isEmpty()) {
-            throw new IllegalArgumentException("Validation error: " + violations.iterator().next().getMessage());
-        }
+    public SuperGt update(Integer id, @Valid SuperGtRequest superGtRequest) {
 
         Optional<SuperGt> optionalSuperGt = superGtMapper.findById(id);
         SuperGt existingSuperGt = optionalSuperGt.orElseThrow(() -> new SuperGtNotFoundException("SuperGt with id " + id + " not found"));

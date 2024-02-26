@@ -13,10 +13,6 @@ public class SuperGtRequest {
     @NotNull(message = "Car Number must not be null")
     private String carNumber;
 
-    // デフォルトコンストラクタの追加
-    public SuperGtRequest() {
-    }
-
     public SuperGtRequest(String driver, String affiliatedTeam, String carNumber) {
         this.driver = driver;
         this.affiliatedTeam = affiliatedTeam;

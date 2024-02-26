@@ -30,5 +30,4 @@ public interface SuperGtMapper {
 
     @Update("UPDATE superGt SET driver = #{driver}, affiliated_team = #{affiliatedTeam}, car_number = #{carNumber} WHERE id = #{id}")
     void update(SuperGt superGt);
-
 }
