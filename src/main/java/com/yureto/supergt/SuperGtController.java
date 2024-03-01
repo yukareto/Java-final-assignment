@@ -35,7 +35,7 @@ public class SuperGtController {
 
     @PostMapping("/superGt")
     public ResponseEntity<SuperGtResponse> insert(@RequestBody SuperGtRequest superGtRequest) {
-        SuperGt superGt = superGtService.insert(superGtRequest);
+        SuperGt superGt = superGtService.insert(superGtRequest.getDriver(), superGtRequest.getAffiliatedTeam(), superGtRequest.getCarNumber());
         SuperGtResponse message = new SuperGtResponse("new driver created");
         return ResponseEntity.ok(message);
     }
