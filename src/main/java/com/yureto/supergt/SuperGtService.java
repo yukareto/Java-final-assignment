@@ -29,25 +29,34 @@ public class SuperGtService {
         return superGtOptional.orElseThrow(() -> new SuperGtNotFoundException("SuperGt with id " + id + " not found"));
     }
 
-    public SuperGt insert(String driver, String affiliated_team, String car_number) {
-        Optional<SuperGt> superGtOptional = superGtMapper.findByDriverOrAffiliatedTeamOrCarNumber(driver, affiliated_team, car_number);
-        if (superGtOptional.isPresent()) {
-            throw new SuperGtAlreadyExistsException("driver " + driver + " and affiliated_team " + affiliated_team + " and car_number " + car_number + " already exists");
+    public SuperGt insert(SuperGtRequest superGtRequest) {
+        String driver = superGtRequest.getDriver();
+        String affiliatedTeam = superGtRequest.getAffiliatedTeam();
+        String carNumber = superGtRequest.getCarNumber();
 
+        // 入力値のチェックやビジネスロジックの適用などがあればここで行う
+
+        Optional<SuperGt> superGtOptional = superGtMapper.findByDriverOrAffiliatedTeamOrCarNumber(driver, affiliatedTeam, carNumber);
+        if (superGtOptional.isPresent()) {
+            throw new SuperGtAlreadyExistsException("driver " + driver + " and affiliated_team " + affiliatedTeam + " and car_number " + carNumber + " already exists");
         }
-        SuperGt superGt = new SuperGt(null, driver, affiliated_team, car_number);
+
+        SuperGt superGt = new SuperGt(null, driver, affiliatedTeam, carNumber);
         superGtMapper.insert(superGt);
         return superGt;
     }
 
-    public SuperGt update(Integer id, String driver, String affiliated_team, String car_number) {
+    public SuperGt update(Integer id, SuperGtRequest superGtRequest) {
+        String driver = superGtRequest.getDriver();
+        String affiliatedTeam = superGtRequest.getAffiliatedTeam();
+        String carNumber = superGtRequest.getCarNumber();
 
         Optional<SuperGt> optionalSuperGt = superGtMapper.findById(id);
         SuperGt existingSuperGt = optionalSuperGt.orElseThrow(() -> new SuperGtNotFoundException("SuperGt with id " + id + " not found"));
 
         existingSuperGt.setDriver(driver);
-        existingSuperGt.setAffiliatedTeam(affiliated_team);
-        existingSuperGt.setCarNumber(car_number);
+        existingSuperGt.setAffiliatedTeam(affiliatedTeam);
+        existingSuperGt.setCarNumber(carNumber);
 
         superGtMapper.update(existingSuperGt);
 
