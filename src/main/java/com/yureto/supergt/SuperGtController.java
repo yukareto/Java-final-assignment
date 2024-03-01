@@ -44,7 +44,7 @@ public class SuperGtController {
     @PatchMapping("/superGt/{id}")
     public ResponseEntity<SuperGtResponse> update(@PathVariable("id") Integer id, @RequestBody @Validated SuperGtRequest superGtRequest) {
         SuperGt updatedSuperGt = superGtService.update(id, superGtRequest);
-        SuperGtResponse message = new SuperGtResponse("driver updated");
+        SuperGtResponse message = new SuperGtResponse( "driver updated");
         return ResponseEntity.ok(message);
     }
 }
