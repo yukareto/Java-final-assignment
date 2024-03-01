@@ -29,14 +29,28 @@ public class SuperGtService {
         return superGtOptional.orElseThrow(() -> new SuperGtNotFoundException("SuperGt with id " + id + " not found"));
     }
 
-    public SuperGt insert(String driver, String affiliated_team, String car_number) {
-        Optional<SuperGt> superGtOptional = superGtMapper.findByDriverOrAffiliatedTeamOrCarNumber(driver, affiliated_team, car_number);
+    public SuperGt insert(String driver, String affiliatedTeam, String carNumber) {
+        Optional<SuperGt> superGtOptional = superGtMapper.findByDriverOrAffiliatedTeamOrCarNumber(driver, affiliatedTeam, carNumber);
         if (superGtOptional.isPresent()) {
-            throw new SuperGtAlreadyExistsException("driver " + driver + " and affiliated_team " + affiliated_team + " and car_number " + car_number + " already exists");
-
+            throw new SuperGtAlreadyExistsException("driver " + driver + " and affiliated_team " + affiliatedTeam + " and car_number " + carNumber + " already exists");
         }
-        SuperGt superGt = new SuperGt(null, driver, affiliated_team, car_number);
+
+        SuperGt superGt = new SuperGt(null, driver, affiliatedTeam, carNumber);
         superGtMapper.insert(superGt);
         return superGt;
+    }
+
+
+    public SuperGt update(Integer id, String driver, String affiliatedTeam, String carNumber) {
+        Optional<SuperGt> optionalSuperGt = superGtMapper.findById(id);
+        SuperGt existingSuperGt = optionalSuperGt.orElseThrow(() -> new SuperGtNotFoundException("SuperGt with id " + id + " not found"));
+
+        existingSuperGt.setDriver(driver);
+        existingSuperGt.setAffiliatedTeam(affiliatedTeam);
+        existingSuperGt.setCarNumber(carNumber);
+
+        superGtMapper.update(existingSuperGt);
+
+        return existingSuperGt;
     }
 }
