@@ -1,5 +1,6 @@
 package com.yureto.supergt;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
@@ -30,4 +31,7 @@ public interface SuperGtMapper {
 
     @Update("UPDATE superGt SET driver = #{driver}, affiliated_team = #{affiliatedTeam}, car_number = #{carNumber} WHERE id = #{id}")
     void update(SuperGt superGt);
+
+    @Delete("DELETE FROM superGt WHERE id = #{id}")
+    void delete(Integer id);
 }
