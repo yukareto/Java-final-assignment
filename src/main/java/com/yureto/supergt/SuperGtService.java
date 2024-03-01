@@ -53,4 +53,11 @@ public class SuperGtService {
 
         return existingSuperGt;
     }
+
+    public Integer delete(Integer id) {
+        Optional<SuperGt> optionalSuperGt = superGtMapper.findById(id);
+        SuperGt existingSuperGt = optionalSuperGt.orElseThrow(() -> new SuperGtNotFoundException("SuperGt with id " + id + " not found"));
+        superGtMapper.delete(id);
+        return id;
+    }
 }

@@ -2,6 +2,7 @@ package com.yureto.supergt;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -44,6 +45,13 @@ public class SuperGtController {
     public ResponseEntity<SuperGtResponse> update(@PathVariable("id") Integer id, @RequestBody SuperGtRequest superGtRequest) {
         SuperGt updatedSuperGt = superGtService.update(id, superGtRequest.getDriver(), superGtRequest.getAffiliatedTeam(), superGtRequest.getCarNumber());
         SuperGtResponse message = new SuperGtResponse("driver updated");
+        return ResponseEntity.ok(message);
+    }
+
+    @DeleteMapping("/superGt/{id}")
+    public ResponseEntity<SuperGtResponse> delete(@PathVariable("id") Integer id) {
+        Integer deletedId = superGtService.delete(id);
+        SuperGtResponse message = new SuperGtResponse("driver deleted");
         return ResponseEntity.ok(message);
     }
 }
