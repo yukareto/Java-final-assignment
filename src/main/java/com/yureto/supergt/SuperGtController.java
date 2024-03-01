@@ -2,7 +2,6 @@ package com.yureto.supergt;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -35,16 +34,16 @@ public class SuperGtController {
     }
 
     @PostMapping("/superGt")
-    public ResponseEntity<SuperGtResponse> insert(@RequestBody @Validated SuperGtRequest superGtRequest) {
+    public ResponseEntity<SuperGtResponse> insert(@RequestBody SuperGtRequest superGtRequest) {
         SuperGt superGt = superGtService.insert(superGtRequest);
         SuperGtResponse message = new SuperGtResponse("new driver created");
         return ResponseEntity.ok(message);
     }
 
     @PatchMapping("/superGt/{id}")
-    public ResponseEntity<SuperGtResponse> update(@PathVariable("id") Integer id, @RequestBody @Validated SuperGtRequest superGtRequest) {
-        SuperGt updatedSuperGt = superGtService.update(id, superGtRequest);
-        SuperGtResponse message = new SuperGtResponse( "driver updated");
+    public ResponseEntity<SuperGtResponse> update(@PathVariable("id") Integer id, @RequestBody SuperGtRequest superGtRequest) {
+        SuperGt updatedSuperGt = superGtService.update(id, superGtRequest.getDriver(), superGtRequest.getAffiliatedTeam(), superGtRequest.getCarNumber());
+        SuperGtResponse message = new SuperGtResponse("driver updated");
         return ResponseEntity.ok(message);
     }
 }
