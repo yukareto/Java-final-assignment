@@ -40,14 +40,14 @@ public class SuperGtService {
         return superGt;
     }
 
-    public SuperGt update(Integer id, SuperGtRequest superGtRequest) {
+    public SuperGt update(Integer id, String driver, String affiliated_team, String car_number) {
 
         Optional<SuperGt> optionalSuperGt = superGtMapper.findById(id);
         SuperGt existingSuperGt = optionalSuperGt.orElseThrow(() -> new SuperGtNotFoundException("SuperGt with id " + id + " not found"));
 
-        existingSuperGt.setDriver(superGtRequest.getDriver());
-        existingSuperGt.setAffiliatedTeam(superGtRequest.getAffiliatedTeam());
-        existingSuperGt.setCarNumber(superGtRequest.getCarNumber());
+        existingSuperGt.setDriver(driver);
+        existingSuperGt.setAffiliatedTeam(affiliated_team);
+        existingSuperGt.setCarNumber(car_number);
 
         superGtMapper.update(existingSuperGt);
 
