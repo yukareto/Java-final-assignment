@@ -1,5 +1,6 @@
-package com.yureto.supergt;
+package com.yureto.supergt.mapper;
 
+import com.yureto.supergt.entity.SuperGt;
 import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
