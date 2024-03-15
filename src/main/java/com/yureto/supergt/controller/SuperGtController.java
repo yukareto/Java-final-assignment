@@ -1,5 +1,9 @@
-package com.yureto.supergt;
+package com.yureto.supergt.controller;
 
+import com.yureto.supergt.controller.request.SuperGtRequest;
+import com.yureto.supergt.controller.response.SuperGtResponse;
+import com.yureto.supergt.entity.SuperGt;
+import com.yureto.supergt.service.SuperGtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

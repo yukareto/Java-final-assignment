@@ -1,4 +1,4 @@
-package com.yureto.supergt;
+package com.yureto.supergt.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;

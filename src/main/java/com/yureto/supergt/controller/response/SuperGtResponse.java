@@ -1,4 +1,4 @@
-package com.yureto.supergt;
+package com.yureto.supergt.controller.response;
 
 public class SuperGtResponse {
 
