@@ -8,7 +8,7 @@ CREATE TABLE superGt (
   UNIQUE(car_number)
 );
 
-INSERT INTO superGt (driver, affiliated_team, car_number) VALUES ('山本尚貴', 'RAYBRIG-NSX-GT', 100);
+INSERT INTO superGt (driver, affiliated_team, car_number) VALUES ('山本尚貴', 'RAYBRIG NSX-GT', 100);
 INSERT INTO superGt (driver, affiliated_team, car_number) VALUES ('大湯都史樹', 'ARTA MUGEN NSX-GT', 8);
 INSERT INTO superGt (driver, affiliated_team, car_number) VALUES ('立川裕路', 'ZENT CERUMO GR Supra', 38);
 INSERT INTO superGt (driver, affiliated_team, car_number) VALUES ('蒲生尚弥', 'LEON PYRAMID AMG', 65);

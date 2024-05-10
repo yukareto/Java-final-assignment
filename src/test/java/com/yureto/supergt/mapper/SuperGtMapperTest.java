@@ -30,7 +30,7 @@ class SuperGtMapperTest {
         assertThat(superGt)
                 .hasSize(7)
                 .contains(
-                        new SuperGt(1, "山本尚貴", "RAYBRIG-NSX-GT", "100"),
+                        new SuperGt(1, "山本尚貴", "RAYBRIG NSX-GT", "100"),
                         new SuperGt(2, "大湯都史樹", "ARTA MUGEN NSX-GT", "8"),
                         new SuperGt(3, "立川裕路", "ZENT CERUMO GR Supra", "38"),
                         new SuperGt(4, "蒲生尚弥", "LEON PYRAMID AMG", "65"),

@@ -10,7 +10,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 
@@ -26,7 +26,7 @@ public class SuperGtServiceTest {
     @Test
     public void ドライバー情報が全て取得されること() {
         List<SuperGt> superGt = List.of(
-                new SuperGt(1, "山本尚貴", "RAYBRIG-NSX-GT", "100"),
+                new SuperGt(1, "山本尚貴", "RAYBRIG NSX-GT", "100"),
                 new SuperGt(2, "大湯都史樹", "ARTA MUGEN NSX-GT", "8"),
                 new SuperGt(3, "立川裕路", "ZENT CERUMO GR Supra", "38"),
                 new SuperGt(4, "蒲生尚弥", "LEON PYRAMID AMG", "65"),
