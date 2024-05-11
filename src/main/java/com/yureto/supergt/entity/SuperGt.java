@@ -1,4 +1,4 @@
-package com.yureto.supergt;
+package com.yureto.supergt.entity;
 
 public class SuperGt {
     public Integer id;
