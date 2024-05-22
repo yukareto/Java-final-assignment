@@ -1,5 +1,9 @@
-package com.yureto.supergt;
+package com.yureto.supergt.service;
 
+import com.yureto.supergt.entity.SuperGt;
+import com.yureto.supergt.exception.SuperGtAlreadyExistsException;
+import com.yureto.supergt.exception.SuperGtNotFoundException;
+import com.yureto.supergt.mapper.SuperGtMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
