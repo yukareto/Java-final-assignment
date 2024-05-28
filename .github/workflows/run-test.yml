@@ -2,7 +2,6 @@ name: Run Test with Gradle
 
 on:
   push:
-    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
