@@ -1,30 +1,29 @@
 package com.yureto.supergt.mapper;
 
+import com.github.database.rider.core.api.dataset.DataSet;
+import com.github.database.rider.spring.api.DBRider;
 import com.yureto.supergt.entity.SuperGt;
 import org.junit.jupiter.api.Test;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@DBRider
 @MybatisTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@Transactional
 class SuperGtMapperTest {
 
     @Autowired
     SuperGtMapper superGtMapper;
 
     @Test
-    @Sql(
-            scripts = {"classpath:/sqlannotation/delete-superGt.sql", "classpath:/sqlannotation/insert-superGt.sql"},
-            executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD
-    )
+    @DataSet(value = "datasets/superGt.yml")
+    @Transactional
     void ドライバー情報が全て取得されること() {
         List<SuperGt> superGt = superGtMapper.findAll();
         assertThat(superGt)

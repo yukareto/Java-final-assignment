@@ -1,0 +1,29 @@
+superGt:
+  - id: 1
+    driver: "山本尚貴"
+    affiliated_team: "RAYBRIG NSX-GT"
+    car_number: "100"
+  - id: 2
+    driver: "大湯都史樹"
+    affiliated_team: "ARTA MUGEN NSX-GT"
+    car_number: "8"
+  - id: 3
+    driver: "立川裕路"
+    affiliated_team: "ZENT CERUMO GR Supra"
+    car_number: "38"
+  - id: 4
+    driver: "蒲生尚弥"
+    affiliated_team: "LEON PYRAMID AMG"
+    car_number: "65"
+  - id: 5
+    driver: "井口卓人"
+    affiliated_team: "SUBARU BRZ R&D SPORT"
+    car_number: "61"
+  - id: 6
+    driver: "荒聖治"
+    affiliated_team: "Studie BMW M4"
+    car_number: "7"
+  - id: 7
+    driver: "谷口信輝"
+    affiliated_team: "GOODSMILE RACING & TeamUKYO"
+    car_number: "4"
