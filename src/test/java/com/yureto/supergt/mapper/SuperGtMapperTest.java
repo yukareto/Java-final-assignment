@@ -22,7 +22,7 @@ class SuperGtMapperTest {
     SuperGtMapper superGtMapper;
 
     @Test
-    @DataSet(value = "datasets/superGt.yml")
+    @DataSet(value = "datasets/super_gt.yml")
     @Transactional
     void ドライバー情報が全て取得されること() {
         List<SuperGt> superGt = superGtMapper.findAll();

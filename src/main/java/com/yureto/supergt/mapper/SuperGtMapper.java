@@ -14,25 +14,25 @@ import java.util.Optional;
 @Mapper
 public interface SuperGtMapper {
 
-    @Select("SELECT * FROM superGt")
+    @Select("SELECT * FROM super_gt")
     List<SuperGt> findAll();
 
-    @Select("SELECT * FROM superGt WHERE driver LIKE CONCAT('%', #{driver}, '%')")
+    @Select("SELECT * FROM super_gt WHERE driver LIKE CONCAT('%', #{driver}, '%')")
     List<SuperGt> findByDriver(String driver);
 
-    @Select("SELECT * FROM superGt WHERE id = #{id}")
+    @Select("SELECT * FROM super_gt WHERE id = #{id}")
     Optional<SuperGt> findById(int id);
 
-    @Select("SELECT * FROM superGt WHERE driver = #{driver} OR affiliated_team = #{affiliated_team} OR car_number = #{car_number}")
+    @Select("SELECT * FROM super_gt WHERE driver = #{driver} OR affiliated_team = #{affiliated_team} OR car_number = #{car_number}")
     Optional<SuperGt> findByDriverOrAffiliatedTeamOrCarNumber(String driver, String affiliated_team, String car_number);
 
-    @Insert("INSERT INTO superGt (driver, affiliated_team, car_number) VALUES (#{driver}, #{affiliated_team}, #{car_number})")
+    @Insert("INSERT INTO super_gt (driver, affiliated_team, car_number) VALUES (#{driver}, #{affiliated_team}, #{car_number})")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     void insert(SuperGt superGt);
 
-    @Update("UPDATE superGt SET driver = #{driver}, affiliated_team = #{affiliatedTeam}, car_number = #{carNumber} WHERE id = #{id}")
+    @Update("UPDATE super_gt SET driver = #{driver}, affiliated_team = #{affiliatedTeam}, car_number = #{carNumber} WHERE id = #{id}")
     void update(SuperGt superGt);
 
-    @Delete("DELETE FROM superGt WHERE id = #{id}")
+    @Delete("DELETE FROM super_gt WHERE id = #{id}")
     void delete(Integer id);
 }
