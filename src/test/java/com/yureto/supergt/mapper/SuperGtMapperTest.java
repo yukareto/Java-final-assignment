@@ -10,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabas
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -37,5 +38,22 @@ class SuperGtMapperTest {
                         new SuperGt(6, "荒聖治", "Studie BMW M4", "7"),
                         new SuperGt(7, "谷口信輝", "GOODSMILE RACING & TeamUKYO", "4")
                 );
+    }
+
+    @Test
+    @DataSet(value = "datasets/super_gt.yml")
+    @Transactional
+    void 指定したドライバーidが1件取得されること() {
+        Optional<SuperGt> superGt = superGtMapper.findById(1);
+        assertThat(superGt)
+                .contains(new SuperGt(1, "山本尚貴", "RAYBRIG NSX-GT", "100"));
+    }
+
+    @Test
+    @DataSet(value = "datasets/super_gt.yml")
+    @Transactional
+    void 指定したドライバーidが存在しない場合は空を返すこと() {
+        Optional<SuperGt> superGt = superGtMapper.findById(15);
+        assertThat(superGt).isEmpty();
     }
 }

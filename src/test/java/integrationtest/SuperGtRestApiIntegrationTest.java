@@ -83,4 +83,36 @@ public class SuperGtRestApiIntegrationTest {
 
         JSONAssert.assertEquals(expectedResponse, response, JSONCompareMode.STRICT);
     }
+
+    @Test
+    @DataSet(value = "datasets/super_gt.yml")
+    @Transactional
+    void 指定したドライバーidが1件取得されること() throws Exception {
+        String response = mockMvc.perform(MockMvcRequestBuilders.get("/superGt/1"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+
+        String expectedResponse = """
+            {
+                "id": 1,
+                "driver": "山本尚貴",
+                "affiliatedTeam": "RAYBRIG NSX-GT",
+                "carNumber": "100"
+            }
+        """;
+
+        JSONAssert.assertEquals(expectedResponse, response, JSONCompareMode.STRICT);
+    }
+
+    @Test
+    @DataSet(value = "datasets/super_gt.yml")
+    @Transactional
+    void 指定したドライバーidが存在しない場合は空を返すこと() throws Exception {
+        String response = mockMvc.perform(MockMvcRequestBuilders.get("/superGt/15"))
+                .andExpect(MockMvcResultMatchers.status().isNotFound())
+                .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+        JSONAssert.assertEquals("""
+                []
+                """, response, JSONCompareMode.STRICT);
+    }
 }
