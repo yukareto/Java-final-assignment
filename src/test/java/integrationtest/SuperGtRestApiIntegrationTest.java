@@ -107,12 +107,8 @@ public class SuperGtRestApiIntegrationTest {
     @Test
     @DataSet(value = "datasets/super_gt.yml")
     @Transactional
-    void 指定したドライバーidが存在しない場合は空を返すこと() throws Exception {
-        String response = mockMvc.perform(MockMvcRequestBuilders.get("/superGt/15"))
-                .andExpect(MockMvcResultMatchers.status().isNotFound())
-                .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
-        JSONAssert.assertEquals("""
-                []
-                """, response, JSONCompareMode.STRICT);
+    void 指定したドライバーidが存在しない場合は404を返すこと() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/superGt/15"))
+                .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 }
