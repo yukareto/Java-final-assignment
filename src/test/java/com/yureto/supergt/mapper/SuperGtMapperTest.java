@@ -56,4 +56,18 @@ class SuperGtMapperTest {
         Optional<SuperGt> superGt = superGtMapper.findById(15);
         assertThat(superGt).isEmpty();
     }
+
+    @Test
+    @DataSet(value = "datasets/super_gt.yml")
+    @Transactional
+    void 新しいドライバーが追加されること() {
+        SuperGt newDriver = new SuperGt(null, "藤井誠暢", "D'station Vantage GT3", "777");
+        superGtMapper.insert(newDriver);
+
+        assertThat(newDriver.getId()).isNotNull();
+
+        Optional<SuperGt> insertedDriver = superGtMapper.findById(newDriver.getId());
+        assertThat(insertedDriver)
+                .contains(new SuperGt(newDriver.getId(), "藤井誠暢", "D'station Vantage GT3", "777"));
+    }
 }

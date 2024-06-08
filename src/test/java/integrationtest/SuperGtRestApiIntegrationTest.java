@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
@@ -110,5 +111,40 @@ public class SuperGtRestApiIntegrationTest {
     void 指定したドライバーidが存在しない場合は404を返すこと() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/superGt/15"))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
+    }
+    @Test
+    @DataSet(value = "datasets/super_gt.yml")
+    @Transactional
+    void 新しいドライバーが追加されること() throws Exception {
+        String newDriverJson = """
+            {
+                "driver": "藤井誠暢",
+                "affiliatedTeam": "D'station Vantage GT3",
+                "carNumber": "777"
+            }
+        """;
+
+        String response = mockMvc.perform(MockMvcRequestBuilders.post("/superGt")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(newDriverJson))
+                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+
+        String expectedResponse = """
+            {
+                "id": 8,
+                "driver": "藤井誠暢",
+                "affiliatedTeam": "D'station Vantage GT3",
+                "carNumber": "777"
+            }
+        """;
+
+        JSONAssert.assertEquals(expectedResponse, response, JSONCompareMode.STRICT);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/superGt/8"))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+
+        JSONAssert.assertEquals(expectedResponse, response, JSONCompareMode.STRICT);
     }
 }
