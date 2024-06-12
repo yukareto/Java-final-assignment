@@ -85,4 +85,13 @@ class SuperGtMapperTest {
         assertThat(superGt)
                 .contains(new SuperGt(1, "福住仁嶺", "ENEOS X PRIME GR Supra", "14"));
     }
+
+    @Test
+    @DataSet(value = "datasets/super_gt.yml")
+    @Transactional
+    void 指定したドライバーidが削除されること() {
+        superGtMapper.delete(7);
+        Optional<SuperGt> superGt = superGtMapper.findById(7);
+        assertThat(superGt).isEmpty();
+    }
 }

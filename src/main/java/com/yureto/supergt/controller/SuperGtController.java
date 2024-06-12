@@ -1,7 +1,6 @@
 package com.yureto.supergt.controller;
 
 import com.yureto.supergt.controller.request.SuperGtRequest;
-import com.yureto.supergt.controller.response.SuperGtResponse;
 import com.yureto.supergt.entity.SuperGt;
 import com.yureto.supergt.service.SuperGtService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,9 +56,8 @@ public class SuperGtController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<SuperGtResponse> delete(@PathVariable("id") Integer id) {
-        Integer deletedId = superGtService.delete(id);
-        SuperGtResponse message = new SuperGtResponse("driver deleted");
-        return ResponseEntity.ok(message);
+    public ResponseEntity<Void> delete(@PathVariable("id") Integer id) {
+        superGtService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }

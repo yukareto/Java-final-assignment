@@ -170,4 +170,12 @@ public class SuperGtRestApiIntegrationTest {
 
         JSONAssert.assertEquals(expectedResponse, response, JSONCompareMode.LENIENT);
     }
+
+    @Test
+    @DataSet(value = "datasets/super_gt.yml")
+    @Transactional
+    void 指定したドライバーidが削除されること() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete("/superGt/7"))
+                .andExpect(MockMvcResultMatchers.status().isNoContent());
+    }
 }
