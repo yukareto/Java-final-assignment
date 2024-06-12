@@ -140,4 +140,34 @@ public class SuperGtRestApiIntegrationTest {
 
         JSONAssert.assertEquals(expectedResponse, response, JSONCompareMode.LENIENT);
     }
+
+    @Test
+    @DataSet(value = "datasets/super_gt.yml")
+    @Transactional
+    void 指定したドライバーidが更新されること() throws Exception {
+        String updatedDriver = """
+            {
+                "driver": "福住仁嶺",
+                "affiliatedTeam": "ENEOS X PRIME GR Supra",
+                "carNumber": "14"
+            }
+        """;
+
+        String response = mockMvc.perform(MockMvcRequestBuilders.put("/superGt/1")
+                        .contentType("application/json")
+                        .content(updatedDriver))
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+
+        String expectedResponse = """
+            {
+                "id": 1,
+                "driver": "福住仁嶺",
+                "affiliatedTeam": "ENEOS X PRIME GR Supra",
+                "carNumber": "14"
+            }
+        """;
+
+        JSONAssert.assertEquals(expectedResponse, response, JSONCompareMode.LENIENT);
+    }
 }
