@@ -35,51 +35,51 @@ public class SuperGtRestApiIntegrationTest {
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
         String expectedResponse = """
-            [
-                {
-                    "id": 1,
-                    "driver": "山本尚貴",
-                    "affiliatedTeam": "RAYBRIG NSX-GT",
-                    "carNumber": "100"
-                },
-                {
-                    "id": 2,
-                    "driver": "大湯都史樹",
-                    "affiliatedTeam": "ARTA MUGEN NSX-GT",
-                    "carNumber": "8"
-                },
-                {
-                    "id": 3,
-                    "driver": "立川裕路",
-                    "affiliatedTeam": "ZENT CERUMO GR Supra",
-                    "carNumber": "38"
-                },
-                {
-                    "id": 4,
-                    "driver": "蒲生尚弥",
-                    "affiliatedTeam": "LEON PYRAMID AMG",
-                    "carNumber": "65"
-                },
-                {
-                    "id": 5,
-                    "driver": "井口卓人",
-                    "affiliatedTeam": "SUBARU BRZ R&D SPORT",
-                    "carNumber": "61"
-                },
-                {
-                    "id": 6,
-                    "driver": "荒聖治",
-                    "affiliatedTeam": "Studie BMW M4",
-                    "carNumber": "7"
-                },
-                {
-                    "id": 7,
-                    "driver": "谷口信輝",
-                    "affiliatedTeam": "GOODSMILE RACING & TeamUKYO",
-                    "carNumber": "4"
-                }
-            ]
-        """;
+                    [
+                        {
+                            "id": 1,
+                            "driver": "山本尚貴",
+                            "affiliatedTeam": "RAYBRIG NSX-GT",
+                            "carNumber": "100"
+                        },
+                        {
+                            "id": 2,
+                            "driver": "大湯都史樹",
+                            "affiliatedTeam": "ARTA MUGEN NSX-GT",
+                            "carNumber": "8"
+                        },
+                        {
+                            "id": 3,
+                            "driver": "立川裕路",
+                            "affiliatedTeam": "ZENT CERUMO GR Supra",
+                            "carNumber": "38"
+                        },
+                        {
+                            "id": 4,
+                            "driver": "蒲生尚弥",
+                            "affiliatedTeam": "LEON PYRAMID AMG",
+                            "carNumber": "65"
+                        },
+                        {
+                            "id": 5,
+                            "driver": "井口卓人",
+                            "affiliatedTeam": "SUBARU BRZ R&D SPORT",
+                            "carNumber": "61"
+                        },
+                        {
+                            "id": 6,
+                            "driver": "荒聖治",
+                            "affiliatedTeam": "Studie BMW M4",
+                            "carNumber": "7"
+                        },
+                        {
+                            "id": 7,
+                            "driver": "谷口信輝",
+                            "affiliatedTeam": "GOODSMILE RACING & TeamUKYO",
+                            "carNumber": "4"
+                        }
+                    ]
+                """;
 
         JSONAssert.assertEquals(expectedResponse, response, JSONCompareMode.STRICT);
     }
@@ -93,13 +93,13 @@ public class SuperGtRestApiIntegrationTest {
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
         String expectedResponse = """
-            {
-                "id": 1,
-                "driver": "山本尚貴",
-                "affiliatedTeam": "RAYBRIG NSX-GT",
-                "carNumber": "100"
-            }
-        """;
+                    {
+                        "id": 1,
+                        "driver": "山本尚貴",
+                        "affiliatedTeam": "RAYBRIG NSX-GT",
+                        "carNumber": "100"
+                    }
+                """;
 
         JSONAssert.assertEquals(expectedResponse, response, JSONCompareMode.STRICT);
     }
@@ -117,12 +117,12 @@ public class SuperGtRestApiIntegrationTest {
     @Transactional
     void 新しいドライバーが追加されること() throws Exception {
         String newDriver = """
-            {
-                "driver": "藤井誠暢",
-                "affiliatedTeam": "D'station Vantage GT3",
-                "carNumber": "777"
-            }
-        """;
+                    {
+                        "driver": "藤井誠暢",
+                        "affiliatedTeam": "D'station Vantage GT3",
+                        "carNumber": "777"
+                    }
+                """;
 
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/superGt")
                         .contentType("application/json")
@@ -131,12 +131,12 @@ public class SuperGtRestApiIntegrationTest {
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
         String expectedResponse = """
-            {
-                "driver": "藤井誠暢",
-                "affiliatedTeam": "D'station Vantage GT3",
-                "carNumber": "777"
-            }
-        """;
+                    {
+                        "driver": "藤井誠暢",
+                        "affiliatedTeam": "D'station Vantage GT3",
+                        "carNumber": "777"
+                    }
+                """;
 
         JSONAssert.assertEquals(expectedResponse, response, JSONCompareMode.LENIENT);
     }
@@ -146,27 +146,27 @@ public class SuperGtRestApiIntegrationTest {
     @Transactional
     void 指定したドライバーidが更新されること() throws Exception {
         String updatedDriver = """
-            {
-                "driver": "福住仁嶺",
-                "affiliatedTeam": "ENEOS X PRIME GR Supra",
-                "carNumber": "14"
-            }
-        """;
+                    {
+                        "driver": "福住仁嶺",
+                        "affiliatedTeam": "ENEOS X PRIME GR Supra",
+                        "carNumber": "14"
+                    }
+                """;
 
-        String response = mockMvc.perform(MockMvcRequestBuilders.put("/superGt/1")
+        String response = mockMvc.perform(MockMvcRequestBuilders.patch("/superGt/1")
                         .contentType("application/json")
                         .content(updatedDriver))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
         String expectedResponse = """
-            {
-                "id": 1,
-                "driver": "福住仁嶺",
-                "affiliatedTeam": "ENEOS X PRIME GR Supra",
-                "carNumber": "14"
-            }
-        """;
+                    {
+                        "id": 1,
+                        "driver": "福住仁嶺",
+                        "affiliatedTeam": "ENEOS X PRIME GR Supra",
+                        "carNumber": "14"
+                    }
+                """;
 
         JSONAssert.assertEquals(expectedResponse, response, JSONCompareMode.LENIENT);
     }

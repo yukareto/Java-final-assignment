@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -20,6 +21,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
+@RequestMapping("/superGt")  // ここでベースパスを指定
 public class SuperGtController {
     private final SuperGtService superGtService;
 
@@ -28,19 +30,19 @@ public class SuperGtController {
         this.superGtService = superGtService;
     }
 
-    @GetMapping("/superGt")
+    @GetMapping
     public ResponseEntity<List<SuperGt>> findAll(@RequestParam(required = false, defaultValue = "") String driver) {
         List<SuperGt> result = superGtService.findByDriver(driver);
         return ResponseEntity.ok(result);
     }
 
-    @GetMapping("/superGt/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<SuperGt> findById(@PathVariable("id") Integer id) {
         SuperGt superGt = superGtService.findById(id);
         return ResponseEntity.ok(superGt);
     }
 
-    @PostMapping("/superGt")
+    @PostMapping
     public ResponseEntity<SuperGt> insert(@RequestBody SuperGtRequest superGtRequest) {
         SuperGt superGt = superGtService.insert(superGtRequest.getDriver(), superGtRequest.getAffiliatedTeam(), superGtRequest.getCarNumber());
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
@@ -48,13 +50,13 @@ public class SuperGtController {
         return ResponseEntity.created(location).body(superGt);
     }
 
-    @PatchMapping("/superGt/{id}")
+    @PatchMapping("/{id}")
     public ResponseEntity<SuperGt> update(@PathVariable("id") Integer id, @RequestBody SuperGtRequest superGtRequest) {
         SuperGt updatedSuperGt = superGtService.update(id, superGtRequest.getDriver(), superGtRequest.getAffiliatedTeam(), superGtRequest.getCarNumber());
         return ResponseEntity.ok(updatedSuperGt);
     }
 
-    @DeleteMapping("/superGt/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<SuperGtResponse> delete(@PathVariable("id") Integer id) {
         Integer deletedId = superGtService.delete(id);
         SuperGtResponse message = new SuperGtResponse("driver deleted");

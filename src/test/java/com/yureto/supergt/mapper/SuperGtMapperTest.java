@@ -86,4 +86,3 @@ class SuperGtMapperTest {
                 .contains(new SuperGt(1, "福住仁嶺", "ENEOS X PRIME GR Supra", "14"));
     }
 }
-
