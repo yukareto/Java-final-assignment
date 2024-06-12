@@ -70,4 +70,19 @@ class SuperGtMapperTest {
         assertThat(insertedDriver)
                 .contains(new SuperGt(newDriver.getId(), "藤井誠暢", "D'station Vantage GT3", "777"));
     }
+
+    @Test
+    @DataSet(value = "datasets/super_gt.yml")
+    @Transactional
+    void 指定したドライバーidが更新されること() {
+        SuperGt updatedDriver = new SuperGt(1, "福住仁嶺", "ENEOS X PRIME GR Supra", "14");
+        updatedDriver.setDriver("福住仁嶺");
+        updatedDriver.setAffiliatedTeam("ENEOS X PRIME GR Supra");
+        updatedDriver.setCarNumber("14");
+        superGtMapper.update(updatedDriver);
+
+        Optional<SuperGt> superGt = superGtMapper.findById(1);
+        assertThat(superGt)
+                .contains(new SuperGt(1, "福住仁嶺", "ENEOS X PRIME GR Supra", "14"));
+    }
 }
