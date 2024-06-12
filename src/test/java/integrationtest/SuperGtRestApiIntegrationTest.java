@@ -111,4 +111,33 @@ public class SuperGtRestApiIntegrationTest {
         mockMvc.perform(MockMvcRequestBuilders.get("/superGt/15"))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
+
+    @Test
+    @DataSet(value = "datasets/super_gt.yml")
+    @Transactional
+    void 新しいドライバーが追加されること() throws Exception {
+        String newDriver = """
+            {
+                "driver": "藤井誠暢",
+                "affiliatedTeam": "D'station Vantage GT3",
+                "carNumber": "777"
+            }
+        """;
+
+        String response = mockMvc.perform(MockMvcRequestBuilders.post("/superGt")
+                        .contentType("application/json")
+                        .content(newDriver))
+                .andExpect(MockMvcResultMatchers.status().isCreated())
+                .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
+
+        String expectedResponse = """
+            {
+                "driver": "藤井誠暢",
+                "affiliatedTeam": "D'station Vantage GT3",
+                "carNumber": "777"
+            }
+        """;
+
+        JSONAssert.assertEquals(expectedResponse, response, JSONCompareMode.LENIENT);
+    }
 }

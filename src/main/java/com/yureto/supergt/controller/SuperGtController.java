@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -39,17 +41,17 @@ public class SuperGtController {
     }
 
     @PostMapping("/superGt")
-    public ResponseEntity<SuperGtResponse> insert(@RequestBody SuperGtRequest superGtRequest) {
+    public ResponseEntity<SuperGt> insert(@RequestBody SuperGtRequest superGtRequest) {
         SuperGt superGt = superGtService.insert(superGtRequest.getDriver(), superGtRequest.getAffiliatedTeam(), superGtRequest.getCarNumber());
-        SuperGtResponse message = new SuperGtResponse("new driver created");
-        return ResponseEntity.ok(message);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
+                .buildAndExpand(superGt.getId()).toUri();
+        return ResponseEntity.created(location).body(superGt);
     }
 
     @PatchMapping("/superGt/{id}")
-    public ResponseEntity<SuperGtResponse> update(@PathVariable("id") Integer id, @RequestBody SuperGtRequest superGtRequest) {
+    public ResponseEntity<SuperGt> update(@PathVariable("id") Integer id, @RequestBody SuperGtRequest superGtRequest) {
         SuperGt updatedSuperGt = superGtService.update(id, superGtRequest.getDriver(), superGtRequest.getAffiliatedTeam(), superGtRequest.getCarNumber());
-        SuperGtResponse message = new SuperGtResponse("driver updated");
-        return ResponseEntity.ok(message);
+        return ResponseEntity.ok(updatedSuperGt);
     }
 
     @DeleteMapping("/superGt/{id}")
