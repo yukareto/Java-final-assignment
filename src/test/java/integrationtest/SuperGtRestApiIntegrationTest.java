@@ -1,6 +1,7 @@
 package integrationtest;
 
 import com.github.database.rider.core.api.dataset.DataSet;
+import com.github.database.rider.core.api.dataset.ExpectedDataSet;
 import com.github.database.rider.spring.api.DBRider;
 import com.yureto.supergt.SupergtApplication;
 import org.junit.jupiter.api.Test;
@@ -169,5 +170,14 @@ public class SuperGtRestApiIntegrationTest {
                 """;
 
         JSONAssert.assertEquals(expectedResponse, response, JSONCompareMode.LENIENT);
+    }
+
+    @Test
+    @DataSet(value = "datasets/super_gt.yml")
+    @ExpectedDataSet(value = "datasets/super_gt_after_deletion.yml")
+    @Transactional
+    void 指定したドライバーidが削除されること() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.delete("/superGt/7"))
+                .andExpect(MockMvcResultMatchers.status().isNoContent());
     }
 }
