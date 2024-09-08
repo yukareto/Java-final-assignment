@@ -64,3 +64,24 @@ SUPER GTのドライバー情報を提供するAPIを作成しました。
 |6|荒聖治|Studie BMW M4|7|
 
 ***
+
+## Read処理の実装結果
+
+<details>
+<summary> 全件取得の内容 </summary>
+
+- 全件取得
+    - curlコマンド
+    ```
+    curl --location 'http://localhost:8080/superGt'
+    ```
+    - 実行結果
+      ![GETでの全件取得.1.png](../../%E6%9C%80%E7%B5%82%E8%AA%B2%E9%A1%8C%28README%E7%94%BB%E5%83%8F%29/GET%E3%81%A7%E3%81%AE%E5%85%A8%E4%BB%B6%E5%8F%96%E5%BE%97.1.png)
+      ![GETでの全件取得.2.png](../../%E6%9C%80%E7%B5%82%E8%AA%B2%E9%A1%8C%28README%E7%94%BB%E5%83%8F%29/GET%E3%81%A7%E3%81%AE%E5%85%A8%E4%BB%B6%E5%8F%96%E5%BE%97.2.png)
+
+</details>
+
+## 
+
+
+
