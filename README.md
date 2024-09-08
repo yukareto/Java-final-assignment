@@ -107,3 +107,28 @@ SUPER GTのドライバー情報を提供するAPIを作成しました。
 </details>
 
 ##
+
+<details>
+<summary> ドライバー名指定取得の内容(クエリパラメーの実装結果)と例外処理 </summary>
+
+- ドライバー名指定取得
+    - curlコマンド
+    ```
+    curl --location 'http://localhost:8080/superGt?driver=%E4%BA%95%E5%8F%A3%E5%8D%93%E4%BA%BA'
+    ```
+    - 実行結果
+      ![GETでのクエリ文字列で結果.png](../../%E6%9C%80%E7%B5%82%E8%AA%B2%E9%A1%8C%28README%E7%94%BB%E5%83%8F%29/GET%E3%81%A7%E3%81%AE%E3%82%AF%E3%82%A8%E3%83%AA%E6%96%87%E5%AD%97%E5%88%97%E3%81%A7%E7%B5%90%E6%9E%9C.png)
+
+##
+
+- 存在しないドライバー名指定取得(例外処理)
+    - curlコマンド
+    ```
+    curl --location 'http://localhost:8080/superGt?driver=%E5%9C%9F%E5%B1%8B%E5%9C%AD%E5%B8%82'
+    ```
+    - 実行結果
+      ![GETでのクエリ文字列(例外処理).png](../../%E6%9C%80%E7%B5%82%E8%AA%B2%E9%A1%8C%28README%E7%94%BB%E5%83%8F%29/GET%E3%81%A7%E3%81%AE%E3%82%AF%E3%82%A8%E3%83%AA%E6%96%87%E5%AD%97%E5%88%97%28%E4%BE%8B%E5%A4%96%E5%87%A6%E7%90%86%29.png)
+
+</details>
+
+##
