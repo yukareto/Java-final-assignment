@@ -71,13 +71,13 @@ SUPER GTのドライバー情報を提供するAPIを作成しました。
 <summary> 全件取得の内容 </summary>
 
 - 全件取得
-    - curlコマンド
+  - curlコマンド
     ```
     curl --location 'http://localhost:8080/superGt'
     ```
-    - 実行結果
-      ![GETでの全件取得.1.png](../../%E6%9C%80%E7%B5%82%E8%AA%B2%E9%A1%8C%28README%E7%94%BB%E5%83%8F%29/GET%E3%81%A7%E3%81%AE%E5%85%A8%E4%BB%B6%E5%8F%96%E5%BE%97.1.png)
-      ![GETでの全件取得.2.png](../../%E6%9C%80%E7%B5%82%E8%AA%B2%E9%A1%8C%28README%E7%94%BB%E5%83%8F%29/GET%E3%81%A7%E3%81%AE%E5%85%A8%E4%BB%B6%E5%8F%96%E5%BE%97.2.png)
+  - 実行結果
+    <img src="https://github.com/yukareto/Java-final-assignment/raw/main/path_to_your_image/GETでの全件取得.1.png">
+    <img src="https://github.com/yukareto/Java-final-assignment/raw/main/path_to_your_image/GETでの全件取得.2.png">
 
 </details>
 
@@ -92,7 +92,7 @@ SUPER GTのドライバー情報を提供するAPIを作成しました。
     curl --location 'http://localhost:8080/superGt/3'
     ```
     - 実行結果
-      ![GETでのID指定取得.png](../../%E6%9C%80%E7%B5%82%E8%AA%B2%E9%A1%8C%28README%E7%94%BB%E5%83%8F%29/GET%E3%81%A7%E3%81%AEID%E6%8C%87%E5%AE%9A%E5%8F%96%E5%BE%97.png)
+      <img src="https://github.com/yukareto/Java-final-assignment/raw/main/path_to_your_image/GETでのID指定取得.png">
 
 ##
 
@@ -102,7 +102,7 @@ SUPER GTのドライバー情報を提供するAPIを作成しました。
     curl --location 'http://localhost:8080/superGt/10'
     ```
     - 実行結果
-      ![GETでのIDが存在しない.png](../../%E6%9C%80%E7%B5%82%E8%AA%B2%E9%A1%8C%28README%E7%94%BB%E5%83%8F%29/GET%E3%81%A7%E3%81%AEID%E3%81%8C%E5%AD%98%E5%9C%A8%E3%81%97%E3%81%AA%E3%81%84.png)
+        <img src="https://github.com/yukareto/Java-final-assignment/raw/main/path_to_your_image/GETでのIDか存在しない.png">
 
 </details>
 
@@ -117,7 +117,7 @@ SUPER GTのドライバー情報を提供するAPIを作成しました。
     curl --location 'http://localhost:8080/superGt?driver=%E4%BA%95%E5%8F%A3%E5%8D%93%E4%BA%BA'
     ```
     - 実行結果
-      ![GETでのクエリ文字列で結果.png](../../%E6%9C%80%E7%B5%82%E8%AA%B2%E9%A1%8C%28README%E7%94%BB%E5%83%8F%29/GET%E3%81%A7%E3%81%AE%E3%82%AF%E3%82%A8%E3%83%AA%E6%96%87%E5%AD%97%E5%88%97%E3%81%A7%E7%B5%90%E6%9E%9C.png)
+        <img src="https://github.com/yukareto/Java-final-assignment/raw/main/path_to_your_image/GETで のクエリ文字列で の結果.png">
 
 ##
 
@@ -127,7 +127,7 @@ SUPER GTのドライバー情報を提供するAPIを作成しました。
     curl --location 'http://localhost:8080/superGt?driver=%E5%9C%9F%E5%B1%8B%E5%9C%AD%E5%B8%82'
     ```
     - 実行結果
-      ![GETでのクエリ文字列(例外処理).png](../../%E6%9C%80%E7%B5%82%E8%AA%B2%E9%A1%8C%28README%E7%94%BB%E5%83%8F%29/GET%E3%81%A7%E3%81%AE%E3%82%AF%E3%82%A8%E3%83%AA%E6%96%87%E5%AD%97%E5%88%97%28%E4%BE%8B%E5%A4%96%E5%87%A6%E7%90%86%29.png)
+        <img src="https://github.com/yukareto/Java-final-assignment/raw/main/path_to_your_image/GETでのクエリ文字列(例外処理).png">
 
 </details>
 
