@@ -71,14 +71,13 @@ SUPER GTのドライバー情報を提供するAPIを作成しました。
 <summary> 全件取得の内容 </summary>
 
 - 全件取得
-  - curlコマンド
+    - curlコマンド
     ```
     curl --location 'http://localhost:8080/superGt'
     ```
-  - 実行結果
-    <img src="https://github.com/yukareto/Java-final-assignment/raw/main/path_to_your_image/GETでの全件取得.1.png">
-    <img src="https://github.com/yukareto/Java-final-assignment/raw/main/path_to_your_image/GETでの全件取得.2.png">
-
+    - 実行結果
+    ![GETでの全件取得.1] (https://github.com/yukareto/Java-final-assignment/blob/96095df843bab1f04730765efb642f867507ce78.png)
+    ![GETでの全件取得.2] (https://github.com/yukareto/Java-final-assignment/blob/96095df843bab1f04730765efb642f867507ce78.png)
 </details>
 
 ## 
@@ -92,7 +91,7 @@ SUPER GTのドライバー情報を提供するAPIを作成しました。
     curl --location 'http://localhost:8080/superGt/3'
     ```
     - 実行結果
-      <img src="https://github.com/yukareto/Java-final-assignment/raw/main/path_to_your_image/GETでのID指定取得.png">
+    ![GETでのID指定取得] (https://github.com/yukareto/Java-final-assignment/blob/96095df843bab1f04730765efb642f867507ce78.png)
 
 ##
 
@@ -102,7 +101,7 @@ SUPER GTのドライバー情報を提供するAPIを作成しました。
     curl --location 'http://localhost:8080/superGt/10'
     ```
     - 実行結果
-        <img src="https://github.com/yukareto/Java-final-assignment/raw/main/path_to_your_image/GETでのIDか存在しない.png">
+        ![GETでのIDが存在しない] (https://github.com/yukareto/Java-final-assignment/blob/96095df843bab1f04730765efb642f867507ce78.png)
 
 </details>
 
@@ -117,7 +116,7 @@ SUPER GTのドライバー情報を提供するAPIを作成しました。
     curl --location 'http://localhost:8080/superGt?driver=%E4%BA%95%E5%8F%A3%E5%8D%93%E4%BA%BA'
     ```
     - 実行結果
-        <img src="https://github.com/yukareto/Java-final-assignment/raw/main/path_to_your_image/GETで のクエリ文字列で の結果.png">
+        ![GETでのクエリ文字列での結果] (https://github.com/yukareto/Java-final-assignment/blob/96095df843bab1f04730765efb642f867507ce78.png)
 
 ##
 
@@ -127,8 +126,7 @@ SUPER GTのドライバー情報を提供するAPIを作成しました。
     curl --location 'http://localhost:8080/superGt?driver=%E5%9C%9F%E5%B1%8B%E5%9C%AD%E5%B8%82'
     ```
     - 実行結果
-        <img src="https://github.com/yukareto/Java-final-assignment/raw/main/path_to_your_image/GETでのクエリ文字列(例外処理).png">
-
+        ![GETでのクエリ文字列(例外処理)] (https://github.com/yukareto/Java-final-assignment/blob/96095df843bab1f04730765efb642f867507ce78.png)
 </details>
 
 ##
