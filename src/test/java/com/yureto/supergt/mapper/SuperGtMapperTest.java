@@ -22,6 +22,7 @@ class SuperGtMapperTest {
     @Autowired
     SuperGtMapper superGtMapper;
 
+    // 全てのドライバー情報が正しく取得されることを確認
     @Test
     @DataSet(value = "datasets/super_gt.yml")
     @Transactional
@@ -40,6 +41,7 @@ class SuperGtMapperTest {
                 );
     }
 
+    // 指定したIDのドライバー情報が1件取得されることを確認
     @Test
     @DataSet(value = "datasets/super_gt.yml")
     @Transactional
@@ -49,14 +51,16 @@ class SuperGtMapperTest {
                 .contains(new SuperGt(1, "山本尚貴", "RAYBRIG NSX-GT", "100"));
     }
 
+    // 指定したIDのドライバー情報が存在しない場合に空の結果が返されることを確認
     @Test
     @DataSet(value = "datasets/super_gt.yml")
     @Transactional
     void 指定したドライバーidが存在しない場合は空を返すこと() {
         Optional<SuperGt> superGt = superGtMapper.findById(15);
-        assertThat(superGt).isEmpty();
+        assertThat(superGt).isEmpty(); // 存在しないIDを指定
     }
 
+    // 新しいドライバーが正しく追加されることを確認
     @Test
     @DataSet(value = "datasets/super_gt.yml")
     @Transactional
@@ -71,6 +75,7 @@ class SuperGtMapperTest {
                 .contains(new SuperGt(newDriver.getId(), "藤井誠暢", "D'station Vantage GT3", "777"));
     }
 
+    // 指定したIDのドライバー情報が正しく更新されることを確認
     @Test
     @DataSet(value = "datasets/super_gt.yml")
     @Transactional
@@ -81,11 +86,13 @@ class SuperGtMapperTest {
         updatedDriver.setCarNumber("14");
         superGtMapper.update(updatedDriver);
 
+        // 更新されたデータが正しく取得されることを確認
         Optional<SuperGt> superGt = superGtMapper.findById(1);
         assertThat(superGt)
                 .contains(new SuperGt(1, "福住仁嶺", "ENEOS X PRIME GR Supra", "14"));
     }
 
+    // 指定したIDのドライバー情報が正しく削除されることを確認
     @Test
     @DataSet(value = "datasets/super_gt.yml")
     @Transactional

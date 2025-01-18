@@ -23,8 +23,10 @@ public class SuperGtServiceTest {
     @Mock
     SuperGtMapper superGtMapper;
 
+    // findAllメソッドが全てのドライバー情報を取得できることを確認するテスト
     @Test
     public void ドライバー情報が全て取得されること() {
+        // モックが返すデータを定義
         List<SuperGt> superGt = List.of(
                 new SuperGt(1, "山本尚貴", "RAYBRIG NSX-GT", "100"),
                 new SuperGt(2, "大湯都史樹", "ARTA MUGEN NSX-GT", "8"),

@@ -27,6 +27,7 @@ public class SuperGtRestApiIntegrationTest {
     @Autowired
     MockMvc mockMvc;
 
+    // 全てのドライバー情報が正しく取得されることを確認するテスト
     @Test
     @DataSet(value = "datasets/super_gt.yml")
     @Transactional
@@ -35,6 +36,7 @@ public class SuperGtRestApiIntegrationTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
+        // 期待されるレスポンス
         String expectedResponse = """
                     [
                         {
@@ -85,6 +87,7 @@ public class SuperGtRestApiIntegrationTest {
         JSONAssert.assertEquals(expectedResponse, response, JSONCompareMode.STRICT);
     }
 
+    // 指定したドライバーidが1件取得されることを確認するテスト
     @Test
     @DataSet(value = "datasets/super_gt.yml")
     @Transactional
@@ -93,6 +96,7 @@ public class SuperGtRestApiIntegrationTest {
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
+        // 期待されるレスポンス
         String expectedResponse = """
                     {
                         "id": 1,
@@ -113,6 +117,7 @@ public class SuperGtRestApiIntegrationTest {
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
+    // 新しいドライバーが正しく追加されることを確認するテスト
     @Test
     @DataSet(value = "datasets/super_gt.yml")
     @Transactional
@@ -142,6 +147,7 @@ public class SuperGtRestApiIntegrationTest {
         JSONAssert.assertEquals(expectedResponse, response, JSONCompareMode.LENIENT);
     }
 
+    // 指定したIDのドライバー情報が正しく更新されることを確認するテスト
     @Test
     @DataSet(value = "datasets/super_gt.yml")
     @Transactional
@@ -172,6 +178,7 @@ public class SuperGtRestApiIntegrationTest {
         JSONAssert.assertEquals(expectedResponse, response, JSONCompareMode.LENIENT);
     }
 
+    // 指定したIDのドライバーが正しく削除されることを確認するテスト
     @Test
     @DataSet(value = "datasets/super_gt.yml")
     @ExpectedDataSet(value = "datasets/super_gt_after_deletion.yml")

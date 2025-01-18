@@ -16,9 +16,11 @@ import java.util.Map;
 @ControllerAdvice
 public class SuperGtExceptionHandler {
 
+    // このクラスは、例外をハンドリングするためのクラスです。
     @ExceptionHandler(value = SuperGtNotFoundException.class)
     public ResponseEntity<Map<String, String>> handleSuperGtNotFoundException(
             SuperGtNotFoundException e, HttpServletRequest request) {
+        // レスポンスのボディを作成
         Map<String, String> body = Map.of(
                 "timestamp", ZonedDateTime.now().toString(),
                 "status", String.valueOf(HttpStatus.NOT_FOUND.value()),
@@ -28,11 +30,13 @@ public class SuperGtExceptionHandler {
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);
     }
 
+    // バリデーションエラーが発生した場合の処理
     @ExceptionHandler(value = MethodArgumentNotValidException.class)
     public ResponseEntity<Map<String, String>> handleValidationException(
             MethodArgumentNotValidException e, HttpServletRequest request) {
         BindingResult bindingResult = e.getBindingResult();
 
+        // レスポンスのボディを作成
         Map<String, String> body = new LinkedHashMap<>();
         body.put("timestamp", ZonedDateTime.now().toString());
         body.put("status", String.valueOf(HttpStatus.BAD_REQUEST.value()));
@@ -47,9 +51,11 @@ public class SuperGtExceptionHandler {
         return new ResponseEntity<>(body, HttpStatus.BAD_REQUEST);
     }
 
+    // SuperGtAlreadyExistsExceptionが発生した場合の処理
     @ExceptionHandler(value = SuperGtAlreadyExistsException.class)
     public ResponseEntity<Map<String, String>> handleSuperGtAlreadyExistsException(
             SuperGtAlreadyExistsException e, HttpServletRequest request) {
+        // レスポンスのボディを作成
         Map<String, String> body = Map.of(
                 "timestamp", ZonedDateTime.now().toString(),
                 "status", String.valueOf(HttpStatus.CONFLICT.value()),
