@@ -14,6 +14,10 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.verify;
 
+/**
+ * SuperGtServiceのテストクラス。
+ * サービスクラスのメソッドが正しく動作するかを検証します。
+ */
 @ExtendWith(MockitoExtension.class)
 public class SuperGtServiceTest {
 
@@ -23,7 +27,9 @@ public class SuperGtServiceTest {
     @Mock
     SuperGtMapper superGtMapper;
 
-    // findAllメソッドが全てのドライバー情報を取得できることを確認するテスト
+    /**
+     * findAllメソッドが全てのドライバー情報を取得できることを確認します。
+     */
     @Test
     public void ドライバー情報が全て取得されること() {
         // モックが返すデータを定義
@@ -36,9 +42,17 @@ public class SuperGtServiceTest {
                 new SuperGt(6, "荒聖治", "Studie BMW M4", "7"),
                 new SuperGt(7, "谷口信輝", "GOODSMILE RACING & TeamUKYO", "4")
         );
+
+        // findAllメソッドのモック動作を設定
         doReturn(superGt).when(superGtMapper).findAll();
+
+        // サービスクラスのfindAllメソッドを呼び出し
         List<SuperGt> actual = superGtService.findAll();
+
+        // 結果の検証: モックが返したデータと一致するか確認
         assertThat(actual).isEqualTo(superGt);
+
+        // findAllメソッドが呼び出されたことを検証
         verify(superGtMapper).findAll();
     }
 }

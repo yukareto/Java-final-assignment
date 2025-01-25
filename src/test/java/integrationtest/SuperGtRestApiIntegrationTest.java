@@ -18,6 +18,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Super GT REST APIの統合テストクラス。
+ * REST APIエンドポイントが期待通り動作することを検証します。
+ */
 @SpringBootTest(classes = SupergtApplication.class)
 @AutoConfigureMockMvc
 @DBRider
@@ -27,16 +31,21 @@ public class SuperGtRestApiIntegrationTest {
     @Autowired
     MockMvc mockMvc;
 
-    // 全てのドライバー情報が正しく取得されることを確認するテスト
+    /**
+     * 全てのドライバー情報が正しく取得されることを確認します。
+     *
+     * @throws Exception テスト中に予期しないエラーが発生した場合
+     */
     @Test
     @DataSet(value = "datasets/super_gt.yml")
     @Transactional
     void ドライバー情報が全て取得されること() throws Exception {
+        // GETリクエストを送信し、レスポンスを取得
         String response = mockMvc.perform(MockMvcRequestBuilders.get("/superGt"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
-        // 期待されるレスポンス
+        // 期待されるレスポンスデータ
         String expectedResponse = """
                     [
                         {
@@ -84,19 +93,25 @@ public class SuperGtRestApiIntegrationTest {
                     ]
                 """;
 
+        // JSONデータの検証
         JSONAssert.assertEquals(expectedResponse, response, JSONCompareMode.STRICT);
     }
 
-    // 指定したドライバーidが1件取得されることを確認するテスト
+    /**
+     * 指定したドライバーIDが1件取得されることを確認します。
+     *
+     * @throws Exception テスト中に予期しないエラーが発生した場合
+     */
     @Test
     @DataSet(value = "datasets/super_gt.yml")
     @Transactional
     void 指定したドライバーidが1件取得されること() throws Exception {
+        // GETリクエストを送信し、レスポンスを取得
         String response = mockMvc.perform(MockMvcRequestBuilders.get("/superGt/1"))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
-        // 期待されるレスポンス
+        // 期待されるレスポンスデータ
         String expectedResponse = """
                     {
                         "id": 1,
@@ -106,22 +121,34 @@ public class SuperGtRestApiIntegrationTest {
                     }
                 """;
 
+        // JSONデータの検証
         JSONAssert.assertEquals(expectedResponse, response, JSONCompareMode.STRICT);
     }
 
+    /**
+     * 存在しないドライバーIDを指定した場合、404ステータスを返すことを確認します。
+     *
+     * @throws Exception テスト中に予期しないエラーが発生した場合
+     */
     @Test
     @DataSet(value = "datasets/super_gt.yml")
     @Transactional
     void 指定したドライバーidが存在しない場合は404を返すこと() throws Exception {
+        // GETリクエストで存在しないIDを指定
         mockMvc.perform(MockMvcRequestBuilders.get("/superGt/15"))
                 .andExpect(MockMvcResultMatchers.status().isNotFound());
     }
 
-    // 新しいドライバーが正しく追加されることを確認するテスト
+    /**
+     * 新しいドライバーが正しく追加されることを確認します。
+     *
+     * @throws Exception テスト中に予期しないエラーが発生した場合
+     */
     @Test
     @DataSet(value = "datasets/super_gt.yml")
     @Transactional
     void 新しいドライバーが追加されること() throws Exception {
+        // POSTリクエストで送信する新しいドライバー情報
         String newDriver = """
                     {
                         "driver": "藤井誠暢",
@@ -130,12 +157,14 @@ public class SuperGtRestApiIntegrationTest {
                     }
                 """;
 
+        // POSTリクエストを送信し、レスポンスを取得
         String response = mockMvc.perform(MockMvcRequestBuilders.post("/superGt")
                         .contentType("application/json")
                         .content(newDriver))
                 .andExpect(MockMvcResultMatchers.status().isCreated())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
+        // 期待されるレスポンスデータ
         String expectedResponse = """
                     {
                         "driver": "藤井誠暢",
@@ -144,14 +173,20 @@ public class SuperGtRestApiIntegrationTest {
                     }
                 """;
 
+        // JSONデータの検証
         JSONAssert.assertEquals(expectedResponse, response, JSONCompareMode.LENIENT);
     }
 
-    // 指定したIDのドライバー情報が正しく更新されることを確認するテスト
+    /**
+     * 指定したIDのドライバー情報が正しく更新されることを確認します。
+     *
+     * @throws Exception テスト中に予期しないエラーが発生した場合
+     */
     @Test
     @DataSet(value = "datasets/super_gt.yml")
     @Transactional
     void 指定したドライバーidが更新されること() throws Exception {
+        // PATCHリクエストで送信する更新情報
         String updatedDriver = """
                     {
                         "driver": "福住仁嶺",
@@ -160,12 +195,14 @@ public class SuperGtRestApiIntegrationTest {
                     }
                 """;
 
+        // PATCHリクエストを送信し、レスポンスを取得
         String response = mockMvc.perform(MockMvcRequestBuilders.patch("/superGt/1")
                         .contentType("application/json")
                         .content(updatedDriver))
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andReturn().getResponse().getContentAsString(StandardCharsets.UTF_8);
 
+        // 期待されるレスポンスデータ
         String expectedResponse = """
                     {
                         "id": 1,
@@ -175,15 +212,21 @@ public class SuperGtRestApiIntegrationTest {
                     }
                 """;
 
+        // JSONデータの検証
         JSONAssert.assertEquals(expectedResponse, response, JSONCompareMode.LENIENT);
     }
 
-    // 指定したIDのドライバーが正しく削除されることを確認するテスト
+    /**
+     * 指定したIDのドライバーが正しく削除されることを確認します。
+     *
+     * @throws Exception テスト中に予期しないエラーが発生した場合
+     */
     @Test
     @DataSet(value = "datasets/super_gt.yml")
     @ExpectedDataSet(value = "datasets/super_gt_after_deletion.yml")
     @Transactional
     void 指定したドライバーidが削除されること() throws Exception {
+        // DELETEリクエストを送信
         mockMvc.perform(MockMvcRequestBuilders.delete("/superGt/7"))
                 .andExpect(MockMvcResultMatchers.status().isNoContent());
     }
